@@ -1,0 +1,164 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+
+		{
+			"fisier":"diploma.png",
+			"descriere":"Diploma"
+			
+		},
+		{
+			"fisier":"peste.png",
+			"descriere":"Friptura Miel",
+			"luni":["toamna","iarna","primavara"]
+		},
+		{
+			"fisier":"gatit.png",
+			"descriere":"customer"
+			
+		},
+		
+		{
+			"fisier":"SalataDeAvocado.png",
+			"descriere":"Clătite cu dulceață",
+			"luni":["toamna","iarna","primavara"]
+			
+		},
+
+		{
+			"fisier":"plantareCopaci.png",
+			"descriere":"customer"
+			
+		},
+		
+		{
+			"fisier":"SalataDeVara.png",
+			"descriere":"Gogoși glazurate",
+			"luni":["toamna","iarna","primavara"]
+		},
+
+		{
+			"fisier":"ceamaibunapizza.png",
+			"descriere":"customer"
+			
+		},
+
+		
+		{
+			"fisier":"carne.png",
+			"descriere":"Tort cu scorțisoară",
+			
+			"luni":["toamna","iarna","primavara"]
+		},
+
+		{
+			"fisier":"training.png",
+			"descriere":"customer"
+			
+		},
+
+		{
+			"fisier":"SupaCrema.png",
+			"descriere":"Prăjitură cu ciocolată",
+			
+			"luni":["toamna","iarna","primavara"]
+		},
+
+		{
+			"fisier":"castigatori.png",
+			"descriere":"Castigatorii concursului GatitpeBune"
+			
+		},
+
+	
+
+		{
+			"fisier":"ciuperci.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"dardindar.png",
+			"descriere":"Impachetarea elimentelor "
+			
+		},
+
+
+		{
+			"fisier":"somon.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+		{
+			"fisier":"Copii.png",
+			"descriere":"Programul Chef de mic"
+			
+		},
+
+		{
+			"fisier":"somon.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"CookingShow.png",
+			"descriere":"Cooking Show"
+			
+		},
+
+
+		{
+			"fisier":"SomonlaCuptor.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"mancare.png",
+			"descriere":"Mancare gratis"
+			
+		},
+
+		{
+			"fisier":"creveti.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"burgher.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"FripturaMiel.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"TocanitaDeVita.png",
+			"descriere":"Tort special",
+			"luni":["toamna","iarna","primavara"]
+		}
+		,
+
+		{
+			"fisier":"healtyliving.png",
+			"descriere":"healtyliving"
+			
+		}
+
+		
+	]
+}

@@ -1,0 +1,57 @@
+WEBVTT
+
+STYLE
+::cue(.verdeSub) {
+  background-color: #77b977; 
+  color: #008000;
+  font-family: "Source Sans Pro", sans-serif;
+}
+::cue(.dreaptaSus) {
+  position: top right;
+  text-align: right;
+  background-color: #77b977; 
+  color: #008000;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+00:00.000 --> 00:03.000 position:90% align:right size:30% line:-50
+<c.dreaptaSus><b>HOMECHEF</b> și <b>Green Valley Farm</b></c>
+
+00:03.000 --> 00:06.000
+<c.verdeSub>La HomeChef, <u>susținem fermierii locali</u> prin parteneriate directe, contribuind activ la economia locală.</c>
+
+00:06.000 --> 00:09.000
+<c.verdeSub>Fiecare produs pe care îl aducem în mesele tale provine din fermele care respectă cele mai înalte standarde de calitate.</c>
+
+00:09.000 --> 00:12.000
+<c.verdeSub>Aceste ferme locale sunt dedicate oferirii unor ingrediente proaspete, fără aditivi sau conservanți, pentru o alimentație mai sănătoasă.</c>
+
+00:12.000 --> 00:15.000
+<c.verdeSub>Prin acest proces, te ajutăm să îți îmbunătățești stilul de viață, aducându-ți acasă doar cele mai bune ingrediente.</c>
+
+00:15.000 --> 00:18.000
+<c.verdeSub>Fiecare masă HomeChef este pregătită cu grijă, folosind produse naturale care sprijină o alimentație echilibrată.</c>
+
+00:18.000 --> 00:21.000
+<c.verdeSub>Acest parteneriat cu fermierii locali contribuie nu doar la sănătatea ta, ci și la protejarea mediului și susținerea tradițiilor agricole.</c>
+
+00:21.000 --> 00:24.000
+<c.verdeSub>Împreună, putem construi o rețea de produse naturale care ajută la conservarea resurselor naturale și la reducerea amprentei de carbon.</c>
+
+00:24.000 --> 00:27.000
+<c.verdeSub>HomeChef este mai mult decât un serviciu de livrare de mese – este un angajament față de viitorul nostru sănătos și sustenabil.</c>
+
+00:27.000 --> 00:30.000
+<c.verdeSub>Sprijinind fermierii locali, sprijinim un viitor mai verde și mai sănătos pentru întreaga comunitate.</c>
+
+00:30.000 --> 00:33.000
+<c.verdeSub>Prin fiecare alegere pe care o faci, îți poți îmbunătăți dieta și susține un sistem alimentar mai echitabil și durabil.</c>
+
+00:33.000 --> 00:36.000
+<c.verdeSub>Fermierii noștri locali sunt pasionați de ceea ce fac și își pun toată energia în fiecare produs pe care îl creează.</c>
+
+00:36.000 --> 00:39.000
+<c.verdeSub>Colaborarea noastră ajută la crearea unui lanț alimentar mai transparent și mai echitabil, care pune pe primul loc sănătatea ta.</c>
+
+00:39.000 --> 00:42.000
+<c.verdeSub>În acest mod, fiecare masă HomeChef devine o alegere conștientă pentru sănătatea ta și pentru viitorul planetei.</c>

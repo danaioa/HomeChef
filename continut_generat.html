@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>repl.it</title>
+  <style>
+    /* continut generat cu imagine si text dupa fiecare paragraf*/
+    body {
+      counter-reset: nrdiv 10;
+      /* nrdiv=0*/
+    }
+
+    div {
+      counter-reset: nrp 3;
+      /* nrp=3*/
+      counter-increment: nrdiv 3;
+      /* nrdiv++ */
+    }
+
+    p {
+      counter-increment: nrp 2;
+      /*nr+=2*/
+    } 
+
+    p::after {
+      content: " abc"" bzz"url('resurse/imagini/glob_mic1.png');
+
+    }
+
+
+    /*counter inainte de paragraf */
+    p {
+  position: relative;
+  display: inline-block; /* Pentru a evita ca linia să ocupe spațiu suplimentar */
+}
+
+p::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px; /* Grosimea liniei */
+  background: var(--culoa);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: width 0.5s ease-in-out;
+  opacity: 0;
+}
+
+p:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+
+
+    p {
+      font-size: 20px;
+      position: relative; 
+      height: 50px;
+    }
+
+    p>span {
+      font-size: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>paragraf <span>ceva</span></p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+    <p>paragraf <span>ceva</span></p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+  </div>
+  <hr />
+  <div>
+    <p>paragraf</p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+    <p>paragraf</p>
+  </div>
+</body>
+
+</html>

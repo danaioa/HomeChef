@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <title>HomeChef</title>
+    
+    <meta name="keywords" content="promoții, activități,mâncare gătită,proteine,calorii,salvarea mediului, sănătate, mâncare, vegan,vegetarian,pachet,rustos,rapid,hranitor"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+    <meta name="description" content="Descoperă rețete sănătoase, rapide și gustoase pentru o alimentație echilibrată.">
+
+    <%- include('../fragmente/head.ejs')%>
+
+    
+</head>
+
+    <body>
+        <%- include('../fragmente/header.ejs')%>
+       
+
+        <main>
+           <div class="centrat">
+    <button id="toggleTema">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    
+
+  
+
+             <hr class="efect-css-stilizare-hr">
+            <div id="watermark">
+            </div>
+
+            <section id="sectiune-oferta">
+            <h2>Oferta Curenta</h2>
+            <div id="oferta">
+                <p id="tip-preparat"></p>
+                <p id="reducere"></p>
+                <p id="timp-ramas"></p>
+            </div>
+        </section>
+           
+            <div id="grid-pagina">
+                <section id="welcome">
+                    <h2>Bine ati venit</h2>
+                    <button type="button" class="btn btn-outline-primary">Stil-1-mare</button>
+                    <p class="intro">
+                        <p><b>ip:</b> <%-locals.ip%></p>
+                        La HomeChef, gătitul acasă devine o adevărată plăcere! 🏡💚<br>
+                        Oferim rețete delicioase și ingredientele proaspete necesare pentru a le prepara, toate livrate direct la ușa ta. 🚪📦<br>
+                        Fie că vrei un preparat rapid 🍝 pentru o zi aglomerată sau vrei să încerci ceva nou și sănătos 🥗,
+                        noi suntem aici pentru a te sprijini! 😊
+                    </p>
+                    
+                    <div id="dv-prezentare-1">
+                        <div id="dv-prezentare">
+                        <picture>
+                            <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                            <source srcset="./resurse/imagini/hcecranmic.png" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/hcecranmediu.png" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/hcecranmare.png" alt="text"/>
+                        </picture>
+                    </div>
+                </div>
+                
+                </section>
+                
+                    <section id="evenimente">
+                        <h2>Evenimente HomeChef (Aprilie - Mai)</h2>
+                        <div class="table-container">
+                        <table id="tab-evenimente">
+                            <caption>Evenimente HomeChef (Aprilie - Mai)</caption>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Eveniment</th>
+                                    <th>Descriere</th>
+                                    <th>Locație</th>
+                                    <th>Invitați Speciali</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>25 Aprilie 2025</td>
+                                    <td>🍳 Concurs „Gătește cu HomeChef”</td>
+                                    <td>Utilizatorii trimit rețete proprii pentru premii</td>
+                                    <td>Instagram & Facebook</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>5 Mai 2025</td>
+                                    <td>👨‍🍳 Masterclass cu un bucătar renumit</td>
+                                    <td>Sesiune live de gătit cu un chef celebru</td>
+                                    <td>YouTube Live</td>
+                                    <td>Chef Florin Dumitrescu</td>
+                                </tr>
+                                <tr>
+                                    <td>10 Mai 2025</td>
+                                    <td>🎤 Live Cooking Show</td>
+                                    <td>Prezentare de rețete live, cu interacțiune din partea publicului</td>
+                                    <td>Instagram Live</td>
+                                    <td>Chef Radu Antohe</td>
+                                </tr>
+                                <tr>
+                                    <td>15 Mai 2025</td>
+                                    <td>🍔 Săptămâna Street Food</td>
+                                    <td>Specialități din bucătării internaționale, gătite live</td>
+                                    <td rowspan="2">YouTube Live</td>  
+                                    <td>Chef Andrei Aradits</td>
+                                </tr>
+                                <tr>
+                                    <td>20 Mai 2025</td>
+                                    <td>🌱 Cooking for Health</td>
+                                    <td>Gătit sănătos și rețete nutritive pentru întreaga familie</td>
+                                    <td>Nutriționist Laura Cosoi</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">Urmărește-ne pe Instagram pentru a fi la curent cu toate evenimentele noastre .</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+                    <section id="continutcutie">
+                        <h3>3. Ce se află în cutie?</h3>
+                        <dl>
+                            <dt>🥕 <b>Ingrediente proaspete</b></dt>
+                            <dd>Produse de calitate, atent selecționate.</dd>
+        
+                            <dt>📝 Rețete detaliate</dt>
+                            <dd>Instrucțiuni ușor de urmat, pas cu pas.</dd>
+        
+                            <dt>🍽️ Porții exacte</dt>
+                            <dd>Gândește-te la nevoile tale, fără risipă.</dd>
+        
+                            <dt>🌱 Produse locale și sustenabile</dt>
+                            <dd>Susținem producătorii locali și ingredientele naturale.</dd>
+        
+                            <dt>📦 Ambalaj <i lang="en">eco-friendly</i></dt>
+                            <dd>Materiale reciclabile pentru un impact redus asupra mediului.</dd>
+                        </dl>
+                    </section>
+
+                    <section id="dece">
+                        <h3>1.De ce HomeChef?</h3>
+                        <p>
+                            👨‍🍳 <b>Gătește</b> cu plăcere, fără stres!
+                            Alege HomeChef pentru că îți <b>livrăm ingrediente proaspete</b> și rețete delicioase direct la ușa ta. Fără grija listelor de cumpărături sau planificării meselor – doar bucuria gătitului!
+                        </p>
+        
+                        <p>
+                            🎯 <b>Economisește timp și energie</b>!
+                            Cu HomeChef nu mai pierzi ore întregi în supermarket sau căutând rețete. Alege ce vrei să mănânci și lasă-ne pe noi să ne ocupăm de restul.
+                        </p>
+        
+                        <p>
+                            🌱 <b>Mâncare proaspătă</b> și fără risipă!
+                            Ingredientele sunt porționate exact cât ai nevoie, reducând risipa alimentară și asigurându-ți mereu prospețime maximă.
+                        </p>
+        
+                        <p>
+                            📅 <em>Planifică-ți mesele</em> <b>fără efort</b>!
+                            Cu HomeChef, îți oferim un meniu variat pentru întreaga săptămână, astfel încât să ai mereu preparate gustoase pe masă, fără stres.
+                        </p>
+        
+                        <p>
+                            🍽️ <b>Varietate constantă</b>!
+                            HomeChef îți aduce mereu rețete noi, adaptate gusturilor tale, pentru a nu te plictisi niciodată de aceleași preparate.
+                        </p>
+        
+                        <p>
+                            💡 <em>Gătește ușor</em>, chiar și fără experiență!
+                            Rețetele HomeChef sunt detaliate pas cu pas, astfel încât chiar și cei fără experiență în bucătărie pot pregăti mese sănătoase și delicioase.
+                        </p>
+                        <p>
+                            🎁 Oferă un cadou original!
+                            Vrei să faci un cadou special? Oferă celor dragi o experiență HomeChef, cu rețete și ingrediente gata pregătite pentru o masă perfectă!
+                        </p>
+                    </section>
+        
+                    <section id="functionalitati">
+                        <h3>2.Cum functionează?</h3>
+                        <p>1️⃣ Alegi preparatele dorite</p>
+                        <p> 2️⃣ Selectezi numărul de porții</p>
+                        <p> 3️⃣ Primești ingredientele și rețetele direct în fața uși!</p>
+                        <p>4️⃣ Gătești rapid și te bucuri de mâncare delicioasă! </p>
+                    </section>
+
+                    <section id="intrebari">
+                        <h2>Întrebări frecvente</h2>
+                        <details>
+                            <summary>Ce rețete oferă HomeChef?</summary>
+                            <p>Serviciul de livrare a meselor HomeChef îți pune la dispoziție o varietate de planuri alimentare adaptate stilului tău de viață, inclusiv opțiuni cu carne & legume, low-carb și low-calorie. Poți alege dintre șase preferințe pentru kiturile de masă, fiecare cu preparate create de bucătari pentru a se potrivi nevoilor tale. De exemplu, kiturile noastre low-calorie includ rețete aprobate de nutriționiști, cu aproximativ 650 de calorii. În plus, opțiunea pentru familii îți oferă rețete ușor de preparat și delicioase, pe care le vor adora și copiii tăi. Și mai mult: poți oricând face upgrade la Rețete Gourmet și adăuga extra opțiuni, precum pâine cu usturoi, în fiecare cutie!</p>
+                        </details>
+        
+                        <details>
+                            <summary>Oferă HomeChef informații despre nutriție și calorii?</summary>
+                            <p>Absolut! Fiecare dintre kiturile noastre de masă este etichetat corespunzător și conține toate informațiile nutriționale de care ai nevoie. Vei găsi detalii despre conținutul de calorii, carbohidrați, proteine, fibre, zahăr, sodiu, grăsimi nesaturate și saturate, precum și colesterol.</p>
+                        </details>
+        
+                        <details>
+                            <summary>De câte ori pe săptămână livrează HomeChef kituri de masă?</summary>
+                            <p>O dată pe săptămână. Comanda ta va fi livrată între orele 8:00 și 20:00. Livrăm în toată România, cu excepția anumitor zone izolate.</p>
+                        </details>
+        
+                        <details>
+                            <summary>Cum afectează risipa alimentară și cum ajută HomeChef?</summary>
+                            <p>Risipa alimentară este una dintre cele mai mari probleme globale, având consecințe grave asupra mediului, economiei și societății.</p>
+        
+        
+                            <p> 📌 Conform Organizației Națiunilor Unite pentru Alimentație și Agricultură (FAO):</p>
+        
+                            <p>
+                                La nivel global, peste <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <mfrac>
+                                        <mn>1</mn>
+                                        <mn>5</mn>
+                                    </mfrac>
+                                </math> din alimente sunt irosite anual.
+                            </p>
+                            <p>În Europa, fiecare persoană aruncă în medie între 70 și 100 kg de mâncare pe an.</p>
+                            <p>
+                                În România, peste <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <mfrac>
+                                        <mn>2</mn>
+                                        <mn>5</mn>
+                                    </mfrac>
+                                </math> din populație recunoaște că aruncă frecvent alimente, iar cele mai
+                            </p> <p>irosite produse sunt pâinea, fructele și legumele.</p>
+                            <p>Această risipă nu înseamnă doar pierderi financiare, ci și o utilizare ineficientă a resurselor naturale. Alimentele aruncate generează aproximativ 8-10% din emisiile globale de gaze cu efect de seră, contribuind la schimbările climatice.</p>
+                            <p>HomeChef propune o soluție <em>inteligentă</em> și <em>sustenabilă</em>, livrând ingrediente proaspete și porționate exact pentru rețete sănătoase și delicioase.</p>
+                            <p>✅ Zero risipă – primești exact cât ai nevoie, fără surplus care să ajungă la gunoi.</p>
+                            <p>✅ Fără cumpărături impulsive, planificarea meselor devine simplă și eficientă.</p>
+                            <p>✅ Consum mai responsabil, contribuind la protejarea mediului și reducerea emisiilor de CO₂</p>
+        
+                            <p>"Nu trebuie să aruncăm mâncare pentru a ne aminti cât valorează."</p>
+                            <p>Prin alegeri conștiente, putem reduce risipa și crea un stil de viață mai echilibrat. Alege HomeChef și transformă fiecare masă într-o experiență sustenabilă! 🌱🍽️</p>
+        
+        
+                        </details>
+        
+                    </section>
+                    
+                    <section id="poze">
+                        <h2>Galerie</h2>
+                        
+                            <figure class="fg-img">
+                                <img src="./resurse/imagini/familie.png" alt="Recoltă proaspătă. " style="width: 300px; height: auto;" >
+                                <figcaption>Recoltă proaspătă</figcaption>
+                            </figure>
+                        <figure id="fig1" class="fg-img">
+                            <img src="./resurse/imagini/familie.png" alt="Livrare la tine acasa " style="width: 300px; height: auto;" >
+                            <figcaption>Bucurie în Bucătărie</figcaption>
+                        </figure>
+                        
+                        <figure id="fig2" class="fg-img">
+                            <img src="./resurse/imagini/rosii.png" alt="Recoltă proaspătă. " style="width: 300px; height: auto;" >
+                            <figcaption>Recoltă proaspătă</figcaption>
+                        </figure> 
+                    </section>
+
+                    <section id="zona7">
+                        <h3>DarDinDar </h3>
+                    
+                        <p>În România, <strong>65% din populație</strong> face risipă alimentară, aruncând <strong>130 kg de mâncare pe an</strong> .</p>
+                        <p>În timp ce mulți nu au ce mânca, această risipă ar putea hrăni o mare parte din cei aflați în nevoie .</p>
+                    
+                        <p>Pentru a înțelege amploarea problemei, să calculăm cantitatea totală de mâncare aruncată anual în România. Formula este următoarea:</p>                    
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mfrac>
+                                    <mn class="numar">65</mn>
+                                    <mn class="numar">100</mn>
+                                </mfrac>
+                                <mo class="operator">×</mo>
+                                <mn class="numar">130</mn>
+                                <mo class="operator">×</mo>
+                                <mi class="variabila">kg</mi>
+                                <mo class="operator">×</mo>
+                                <mn class="numar">19,000,000</mn>
+                                <mo class="operator">=</mo>
+                                <mn class="numar">1,627,000,000</mn>
+                                <mi class="variabila">kg</mi>
+                            </mrow>
+                        </math>
+                        
+                    
+                        <p>Rezultatul este: <strong>1,627,000,000 kg</strong> de mâncare aruncată anual 💔.</p>
+                    
+                        <p>HomeChef reduce risipa alimentară prin livrarea de ingrediente precise . <strong>20% din profituri</strong> și <strong>alimente</strong> sunt donate copiilor din zonele defavorizate pentru a combate foametea globală 🌱🌍.</p>
+
+                        <figure id="fig2" class="fg-img">
+                            <img src="./resurse/imagini/dardindar.png" alt="Recoltă proaspătă. "  style="width: 300px; height: auto;">
+                            <figcaption>#DarDinDar</figcaption>
+                    </section>
+            </div> 
+            
+            
+            <hr class="efect-css-stilizare-hr">
+            <section id="galerie-statica">
+                <h2>Galerie</h2>
+                <%- include('../fragmente/galerie.ejs')%>
+
+                
+            </section>
+            <hr class="efect-css-stilizare-hr">
+            <article>
+                
+                <h2  id="text" class="newstitle">Aprovizionari<span id="text-reflectat">Aprovizionari</span></h2>
+                <p>Știm cât de important este să consumăm ingrediente sănătoase și naturale.</p><p> De aceea, HomeChef colaborează cu fermele locale pentru a aduce direct la tine acasă produse de calitate, susținând atât fermierii locali, cât și un stil de viață fără aditivi.</p><p> Fiecare masă preparată cu HomeChef este o alegere pentru sănătate, gust autentic și susținerea comunității.</p>
+                <video controls style="width:60%; height:auto;" poster="/resurse/imagini/poster.jpg" preload="metadata">
+                    <source src="/resurse/video/ferma.mp4" type="video/mp4">
+                    <source src="/resurse/video/ferma.mov" type="video/mov">
+                    
+    
+                    <track src="/resurse/subtitrari/romana.vtt" kind="captions" srclang="ro" label="română" />
+                    <track default src="/resurse/subtitrari/engleza.vtt" kind="captions" srclang="en" label="engleză" />
+                    
+                    Browserul dvs nu poate afisa videouri. Incercati pe alt browser.
+                </video>
+            </article>
+            
+            <hr class="efect-css-stilizare-hr">
+
+        
+                <section id="sfaturi">
+                    <h2 id="text">Tips and Tricks<span id="text-reflectat">Tips and Tricks</span></h2>
+
+                    <p>În bucătăria HomeChef, i-am invitat pe prietenii noștri Gordon Ramsay, Frank Proto și <em>Joshua Weissman</em> să ne împărtășească câteva tipsuri esențiale pentru gătit.<p> De la tehnici de bază la trucuri folosite de bucătari profesioniști, aceste videoclipuri îți vor oferi sfaturi valoroase direct de la experți.</p><p> Descoperă secretele unei fripturi perfecte, ale unei paste cremoase sau ale unui desert spectaculos și du-ți abilitățile culinare la următorul nivel! </p>
+                    <div class="container-iframe">
+                        <div class="taburi-iframe">
+                            <a href="https://www.youtube.com/embed/BHcyuzXRqLs" target="ifr-video">Gordon Ramsay</a>
+                            <a href="https://www.youtube.com/embed/aopS3q6f1GY" target="ifr-video">Frank Protto</a>
+                            <a href="https://www.youtube.com/embed/9msDfJR-ct4" target="ifr-video">Joshua Weissman</a><br />
+                        </div>
+    
+    
+                        <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/BHcyuzXRqLs"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </section>
+                <p></p>
+                <p></p>   
+                <p></p>
+                <p></p>
+                <p></p>   
+                <p></p>
+                <hr class="efect-css-stilizare-hr">
+                <section id="sectiune4">
+                    
+                        <h2 id="text">Fundamentul unui Stil de Viață Sănătos<span id="text-reflectat">Fundamentul unui Stil de Viață Sănătos</span></h2>
+                        <h3>Principalele Grupe de Nutrienți</h3>
+                            <p>Alimentele sunt formate din mai multe tipuri de <b>nutrienți</b>, fiecare având un rol specific în organism:</p>
+                        <article class="col2-nutritie">
+                            
+                            <ul>
+                                <li><strong>Carbohidrați</strong> – sursă principală de energie.</li>
+                                <li><strong>Proteine</strong> – esențiale pentru creșterea și repararea țesuturilor.</li>
+                                <li><strong>Grăsimi</strong> – ajută la absorbția vitaminelor și oferă energie.</li>
+                                <li><strong>Vitamine și Minerale</strong> – necesare pentru diverse funcții metabolice.</li>
+                                <li><strong>Fibre</strong> – esențiale pentru digestie.</li>
+                                <li><strong>Apă</strong> – vitală pentru toate procesele din organism.</li>
+                            </ul>
+                        </article>
+                        
+    
+                        <hr class="efect-css-stilizare-hr">
+
+                        <article>
+                            <h3>Principiile unei Alimentații Sănătoase</h3>
+                            <p>Adoptarea unei diete echilibrate înseamnă respectarea unor reguli simple:</p>
+                           
+                                <article class="col2-nutritie">
+                                 <ul>
+                                <li>Mănâncă variat și echilibrat.</li>
+                                <li>Redu consumul de zahăr și alimente procesate.</li>
+                                <li>Consumă suficiente fibre și proteine de calitate.</li>
+                                <li>Hidratează-te corespunzător.</li>
+                                <li>Menține un orar regulat al meselor.</li>
+                            </ul></article>
+                        </article>
+        
+                        <hr class="efect-css-stilizare-hr">
+
+                        <aside>
+                            <h3>Știai că?</h3>
+                            <p>O dietă echilibrată poate reduce riscul bolilor de inimă cu până la 30% și îmbunătățește sistemul imunitar!</p>
+        
+                            <p>Recomandări rapide<p>
+                                <ul>
+                                    <li>Bea cel puțin 2 litri de apă pe zi.</li>
+                                    <li>Mănâncă 5 porții de fructe și legume zilnic.</li>
+                                    <li>Include grăsimi sănătoase (avocado, nuci, ulei de măsline)</li>
+                                    <li>Consumă proteine de calitate din surse variate.</li>
+                                </ul>
+                        </aside>
+        
+                    </section> 
+
+
+                    
+
+                    
+                    <!-- <h2>Voi</h2>
+                    <figure>
+                        <picture>
+    
+                            <source srcset="resurse/imagini/imagine_mare.png" media="(min-width: 1700px)">
+                            <source srcset="resurse/imagini/imagine_medie.png" media="(min-width: 1063px)">
+                            <img src="resurse/imagini/imagine_mica.png" alt="Recenzii mancare sanatosa la cutie" title="Voi">
+    
+                        </picture>
+                        <figcaption>Cook it. Love it. Tag it #HomeChefPics  </figcaption>
+                    </figure>
+    
+                </section> -->
+
+
+                <p></p>
+                <p></p>   
+                <p></p>
+                <p></p> 
+                <p></p>
+                <p></p>
+                <p></p>   
+                <p></p>
+                <p></p> 
+                <p></p>
+        </main>
+        <p></p>
+        <p></p>
+        <%- include('../fragmente/footer.ejs')%>
+        
+
+    </body>
+
+</html>
+
+
+ 

@@ -1,0 +1,39 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+    
+    $primary: #087843,          // Culoare primară (verde)
+    $secondary: #FFFCFF,        // Culoare secundară (alb)
+    $success: #f7f0f0,          // Culoare de succes (gri deschis)
+    $danger: #239461,           // Culoare de pericol 
+    
+   
+    $body-bg: #e6ffee,          // Culoare de fundal a paginii
+    $body-color: #000000,       // Culoare de text implicită
+    
+    // 3. Font family
+    $font-family-base: Arial,  // Familie de font implicită
+   
+    $h1-font-size: 3rem,
+    $h2-font-size: 1.8rem,
+    $h3-font-size: 1.5rem,
+    $h4-font-size: 1.3rem,
+    $h5-font-size: 1.2rem,
+    $h6-font-size: 1.1rem,
+    
+    // 5. Border radius
+    $border-radius: 0.75rem,    // Border radius implicit
+    $btn-border-radius: 2rem,   // Border radius custom pentru butoane
+    
+
+    $btn-padding-y: 1rem,       // Padding vertical butoane
+    $navbar-padding-y: 2rem,    // Padding vertical navbar
+    
+    // 7. dimensiuni de ecran 
+    $grid-breakpoints: (
+      xs: 0,
+      sm: 576px,
+      md: 768px,                // Ecran mediu
+      lg: 992px,                // Ecran mare
+      xl: 1200px,
+      xxl: 1400px
+    )
+);

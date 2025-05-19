@@ -1,0 +1,25 @@
+<div id="grid-galerie">
+    <% 
+      const vect_luni = ["iarna", "primavara", "vara", "toamna"];
+      const d = new Date();
+      const luna_curenta = vect_luni[Math.floor(d.getMonth() / 3)];
+      let displayedCount = 0;                                    
+      for (let imag of locals.imagini) {  
+        if (imag.luni 
+            && imag.luni.includes(luna_curenta) 
+            && displayedCount < 10) {                           
+          displayedCount++;                                      
+    %>
+        <figure>
+          <picture>
+            <source srcset="<%- imag.fisier_mediu %>" media="screen and (max-width:1000px)" />
+            <img    src="<%- imag.fisier       %>" alt="briose" />
+          </picture>   
+          <figcaption><%= imag.descriere %></figcaption>
+        </figure>
+    <% 
+        }
+      } 
+    %>
+  </div>
+  

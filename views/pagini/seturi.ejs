@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <title>HomeChef - Seturi de Produse</title>
+    <meta name="keywords" content="promoții, activități, mâncare gătită, proteine, calorii, salvarea mediului, sănătate, mâncare, vegan, vegetarian, pachet, gustos, rapid, hrănitor">
+    <meta name="description" content="Descoperă seturi de produse sănătoase și gustoase pentru toate preferințele.">
+    <link rel="stylesheet" href="/css/seturi.css">
+    <%- include('../fragmente/head.ejs')%>
+</head>
+
+<body>
+    <%- include('../fragmente/header.ejs')%>
+
+    <main class="container-seturi">
+         <h1 id="text" style="color:green" id="#">Meniu<span id="text-reflectat">Meniu</span></h1>
+        <hr class="efect-css-stilizare-hr">
+        <% if (seturi.length === 0) { %>
+            <p class="text-danger">Nu există seturi de produse.</p>
+        <% } %>
+
+        <div class="grid-card-container">
+            <% for (let set of seturi) { %>
+                <section class="card-set">
+                    <h3><%= set.nume_set %></h3>
+                    <p><%= set.descriere_set %></p>
+
+                    <div class="produse-set">
+                        <% for (let produs of set.produse) { %>
+                            <div class="produs-set">
+                                <a href="/produs/<%= produs.id %>">
+                                    <h4><%= produs.nume %></h4>
+                                </a>
+                                <p>Pret: <%= produs.pret %> lei</p>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <p class="pret-final">Preț final cu reducere: <strong><%= set.pret_final.toFixed(2) %> lei</strong></p>
+                </section>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include('../fragmente/footer.ejs')%>
+</body>
+</html>
+
+
+<!-- 4 filtre adaugam , la sortare mai trebuie inca doua key -->

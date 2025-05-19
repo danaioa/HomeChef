@@ -1,0 +1,57 @@
+WEBVTT
+
+STYLE
+::cue(.verdeSub) {
+  background-color: #77b977; 
+  color: #008000; 
+  font-family: "Source Sans Pro", sans-serif;
+}
+::cue(.dreaptaSus) {
+  position: top right;
+  text-align: right;
+  background-color: #77b977;
+  color: #008000;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+00:00.000 --> 00:03.000 position:90% align:right size:30% line:-50
+<c.dreaptaSus><b>HOMECHEF</b> and <b>Green Valley Farm</b></c>
+
+00:03.000 --> 00:06.000
+<c.verdeSub>At HomeChef, <u>we support local farmers</u> through direct partnerships, actively contributing to the local economy.</c>
+
+00:06.000 --> 00:09.000
+<c.verdeSub>Every product we bring to your table comes from farms that uphold the highest quality standards.</c>
+
+00:09.000 --> 00:12.000
+<c.verdeSub>These local farms are dedicated to providing fresh ingredients, free from additives or preservatives, for healthier nutrition.</c>
+
+00:12.000 --> 00:15.000
+<c.verdeSub>Through this process, we help you improve your lifestyle by bringing only the best ingredients to your home.</c>
+
+00:15.000 --> 00:18.000
+<c.verdeSub>Each HomeChef meal is carefully prepared using natural products that support a balanced diet.</c>
+
+00:18.000 --> 00:21.000
+<c.verdeSub>This partnership with local farmers contributes not only to your health but also to environmental protection and preserving agricultural traditions.</c>
+
+00:21.000 --> 00:24.000
+<c.verdeSub>Together, we can build a network of natural products that help conserve resources and reduce the carbon footprint.</c>
+
+00:24.000 --> 00:27.000
+<c.verdeSub>HomeChef is more than just a meal delivery service – it’s a commitment to our healthy and sustainable future.</c>
+
+00:27.000 --> 00:30.000
+<c.verdeSub>By supporting local farmers, we support a greener and healthier future for the entire community.</c>
+
+00:30.000 --> 00:33.000
+<c.verdeSub>With every choice you make, you can improve your diet and support a fairer and more sustainable food system.</c>
+
+00:33.000 --> 00:36.000
+<c.verdeSub>Our local farmers are passionate about what they do and put all their energy into every product they create.</c>
+
+00:36.000 --> 00:39.000
+<c.verdeSub>Our collaboration helps create a more transparent and fair food chain that puts your health first.</c>
+
+00:39.000 --> 00:42.000
+<c.verdeSub>This way, every HomeChef meal becomes a conscious choice for your health and the future of the planet.</c>

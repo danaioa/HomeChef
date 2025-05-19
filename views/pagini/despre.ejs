@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <title>HomeChef</title>
+    
+    <meta name="keywords" content="promoții, activități,mâncare gătită,proteine,calorii,salvarea mediului, sănătate, mâncare, vegan,vegetarian,pachet,rustos,rapid,hranitor"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+    <meta name="description" content="Descoperă rețete sănătoase, rapide și gustoase pentru o alimentație echilibrată.">
+    <link rel="stylesheet" href="/resurse/css/galerie.css" type="text/css" />
+
+    <%- include('../fragmente/head.ejs')%>
+
+    
+</head>
+
+    <body>
+<%- include('../fragmente/header.ejs')%>
+
+<main class="pagina-despre">
+  <button id="toggleTema">
+        <i class="fas fa-sun"></i>
+    </button>
+     <hr class="efect-css-stilizare-hr">
+    <div class="galerie-imagini">
+        <% for(let i=0; i < nrImagini && i < imagini.length; i+=2) { %>
+            <img src="<%= imagini[i].fisier_mediu %>" style="--i:<%= i %>;">
+        <% } %>
+      </div>
+      
+    
+
+
+    
+    
+    
+    <section id="prezentare">
+        <h2>Prezentare</h2>
+        <p>HomeChef este locul unde pasiunea pentru gătit se întâlnește cu ingredientele locale de cea mai bună calitate. Oferim mese sănătoase, livrate direct la tine acasă.</p>
+    </section>
+    <hr class="efect-css-stilizare-hr">
+    <div class="tabel-wrapper">
+        <div class="tabel-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>An</th>
+                        <th>Premiu</th>
+                        <th>Organizator</th>
+                        <th>Descriere</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2022</td>
+                        <td>Best Eco-Friendly Startup</td>
+                        <td>GreenTech Awards</td>
+                        <td>Recunoscuți pentru folosirea ambalajelor biodegradabile și colaborarea cu fermieri locali.</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>Healthy Living Award</td>
+                        <td>NutriFood Expo</td>
+                        <td>Premiați pentru promovarea alimentației sănătoase și echilibrate în rândul tinerilor.</td>
+                    </tr>
+                    <tr>
+                        <td>2024</td>
+                        <td>Top Culinary Innovation</td>
+                        <td>Culinary Trends Gala</td>
+                        <td>Distincție pentru meniuri inovative și adaptate diferitelor diete.</td>
+                    </tr>
+                    <tr>
+                        <td>2024</td>
+                        <td>Customer Choice Award</td>
+                        <td>Foodie.ro</td>
+                        <td>Apreciere din partea clienților pentru servicii rapide și preparate gustoase.</td>
+                    </tr>
+                    <tr class="rand-final">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="premii">Număr premii: 4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    <hr class="efect-css-stilizare-hr">
+
+    <section id="istoric">
+        <h2>Istoric</h2>
+        <p>Ideea HomeChef s-a născut din dorința de a sprijini fermierii locali și de a aduce în prim-plan bucătăria sănătoasă. De la începuturi modeste, am crescut într-o comunitate dedicată alimentației echilibrate și sustenabile.</p>
+    </section>
+    <hr class="efect-css-stilizare-hr">
+    <section id="motivatie">
+        <h2>Motivație</h2>
+        <p>Suntem motivați de dorința de a crea o rețea de încredere între consumatori și producători. Vrem să transformăm fiecare masă într-o experiență responsabilă și delicioasă.</p>
+    </section>
+
+    <section id="galerie">
+        <h2>Galerie</h2>
+        <p>Galeria noastră reflectă pasiunea pentru gătit, ingredientele naturale și dragostea pentru comunitate. Mai jos sunt câteva imagini reprezentative:</p>
+        <!-- <div class="galerie-imagini">
+            <img src="/resurse/imagini/galerie/1.jpg" alt="preparat gustos">
+            <img src="/resurse/imagini/galerie/2.jpg" alt="ingrediente proaspete">
+            <img src="/resurse/imagini/galerie/3.jpg" alt="fermier local">
+        </div> -->
+    </section>
+</main>
+
+<%- include('../fragmente/footer.ejs')%>
+        
+
+</body>
+
+</html>
+

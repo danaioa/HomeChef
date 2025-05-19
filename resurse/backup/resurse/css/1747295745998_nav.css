@@ -1,0 +1,111 @@
+@charset "UTF-8";
+#hamburger, #ch-menu {
+  display: none;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+  border-bottom: 2px solid black;
+}
+
+ul.meniu {
+  display: b;
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+}
+
+nav {
+  background-color: var(--culoare-background);
+  --inaltime-meniu: 40px;
+  --latime-buton: 150px;
+  height: var(--inaltime-meniu);
+  position: sticky;
+  top: 0;
+}
+
+ul.meniu {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.meniu li {
+  /* pentru a fi pe orizontala */
+  width: var(--latime-buton);
+  height: var(--inaltime-meniu);
+  border: 1px solid var(--culoare-deschisa);
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+  line-height: var(--inaltime-meniu);
+  transition: all 1s linear;
+  position: relative;
+}
+
+ul.meniu li:hover {
+  background-color: var(--culoare-background);
+}
+
+ul.meniu li:hover ul {
+  display: block;
+  background-color: var(--culoare-deschisa);
+  position: relative;
+  list-style-type: none;
+  left: -1px;
+}
+
+ul.meniu li:hover a, ul.meniu li:hover div {
+  color: white;
+}
+
+ul.meniu li:hover::before {
+  width: 100%; /* Se extinde spre stânga */
+}
+
+ul.meniu li a, ul.meniu li div {
+  color: black;
+  text-decoration: none;
+  transition: all 1s linear;
+  display: block;
+  height: 100%;
+  cursor: pointer;
+}
+
+ul.meniu li::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 6px;
+  background: linear-gradient(to right, var(--culoare-background), var(--culoare-deschisa)); /* Gradient de la stânga la dreapta */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: width 0.5s ease-in-out;
+}
+
+ul.meniu ul {
+  display: none;
+  padding: 0;
+  animation-name: animatie_submeniu;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+
+@keyframes animatie_submeniu {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(100%);
+  }
+}

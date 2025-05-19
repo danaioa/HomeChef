@@ -1,0 +1,26 @@
+{
+  "name": "homechef",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mancare",
+    "sanatos",
+    "prospat",
+    "livrare"
+  ],
+  "author": "Lepadat Dana",
+  "license": "ISC",
+  "description": "homechef",
+  "dependencies": {
+    "bootstrap": "^5.3.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "moment": "^2.30.1",
+    "pg": "^8.14.1",
+    "sass": "^1.86.3",
+    "sharp": "^0.34.1"
+  }
+}
