@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html  lang="ro">
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+        <meta name="description" content="HomeChef: Descoperă rețete delicioase si sanatoase , sfaturi culinare și ingrediente de calitate pentru a găti acasă ca un adevărat chef.">
+        <meta name="keywords" content="HomeChef, rețete, gătit, culinar, ingrediente, bucătărie, sfaturi, preparate, mâncare,sanatos">
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
         <title>CofetÄƒria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
@@ -14,69 +14,114 @@
     <header class="c1" id="titlu" >
      
         <%- include("../fragmente/header") %>
+  
+        <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="toggleTema">
+        <label class="form-check-label" for="toggleTema">
+        <i id="temaIcon" class="fas fa-sun"></i>
+        </label>
+        </div>
+
+
     </header>
 
     <main>
 
         
          <hr class="efect-css-stilizare-hr">
-    <label> Nume: <input type="text" id="inp-nume"></label>
+   <div class="container mt-4">
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+            <label class="form-label">Nume:</label>
+            <input type="text" id="inp-nume" class="form-control">
+        </div>
 
-    <div> Calorii:
-        <p><label>Dietetic (calorii &lt; 350)
-            <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
-        </label></p>
-        <p><label>Mediu (350 &le; calorii &lt; 700)
-            <input id="i_rad2"  name="gr_rad" value="350:700" type="radio"/>
-        </label></p>
-        <p><label>Ridicat caloric (700 &le; calorii)
-            <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
-        </label></p>
-        <p><label>Toate
-            <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-        </label></p>
+        <div class="col-md-6 col-lg-4">
+            <label class="form-label">Calorii:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="i_rad1" name="gr_rad" value="0:350">
+                <label class="form-check-label" for="i_rad1">Dietetic (calorii &lt; 350)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="i_rad2" name="gr_rad" value="350:700">
+                <label class="form-check-label" for="i_rad2">Mediu (350 &le; calorii &lt; 700)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="i_rad3" name="gr_rad" value="700:1000000000">
+                <label class="form-check-label" for="i_rad3">Ridicat caloric (700 &le; calorii)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="i_rad4" name="gr_rad" value="toate" checked>
+                <label class="form-check-label" for="i_rad4">Toate</label>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <label class="form-label">Categorie:</label>
+            <select id="inp-categorie" class="form-select">
+                <option value="toate">Toate</option>
+                <option value="low carb">Low carb</option>
+                <option value="quick & easy">Quick & Easy</option>
+                <option value="high protein">High Protein</option>
+                <option value="low fat">Low Fat</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <label class="form-label">Pret minim:</label>
+            <input type="range" id="inp-pret" value="0" min="0" max="70" class="form-range">
+            <span id="infoRange">(0)</span>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <label for="inp-alergeni" class="form-label">Alergeni de evitat (separati prin virgula):</label>
+            <input list="lista-alergeni" id="inp-alergeni" class="form-control" placeholder="ex: gluten, lapte" autocomplete="off">
+            <datalist id="lista-alergeni">
+                <option value="gluten"></option>
+                <option value="lapte"></option>
+                <option value="oua"></option>
+                <option value="arahide"></option>
+                <option value="soia"></option>
+                <option value="fructe de mare"></option>
+                <option value="migdale"></option>
+                <option value="fistic"></option>
+            </datalist>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <label for="inp-select-multiplu" class="form-label">Etichete nutritionale:</label>
+            <select id="inp-select-multiplu" multiple size="4" class="form-select">
+                <option value="bio">Bio</option>
+                <option value="vegan">Vegan</option>
+                <option value="fara zahar">Fara zahar</option>
+                <option value="fara gluten">Fara gluten</option>
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label for="inp-observatii" class="form-label">Observatii preferinte ingrediente:</label>
+            <textarea id="inp-observatii" rows="3" class="form-control" placeholder="ex: vreau produse cu miere, evit produse cu gelatina"></textarea>
+        </div>
     </div>
-
-    <label> Categorie:
-        <select id="inp-categorie">
-            <option value="toate">Toate</option>
-            <option value="low carb">Low carb</option>
-            <option value="quick & easy">Quick & Easy</option>
-            <option value="high protein">High Protein</option>
-            <option value="low fat">Low Fat</option>
-        </select>
-    </label>
-
-    <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0" max="70"> <span id="infoRange">(0)</span></label>
-
-   <section class="filtru-alergeni">
-  <label for="inp-alergeni">
-    Alergeni de evitat (separați prin virgulă):
-    <input list="lista-alergeni" id="inp-alergeni" placeholder="ex: gluten, lapte" autocomplete="off">
-  </label>
-
-  <datalist id="lista-alergeni">
-    <option value="gluten"></option>
-    <option value="lapte"></option>
-    <option value="oua"></option>
-    <option value="arahide"></option>
-    <option value="soia"></option>
-    <option value="fructe de mare"></option>
-    <option value="migdale"></option>
-    <option value="fistic"></option>
-  </datalist>
+</div>
 
 
-  
-</section>
 
+   <p class="btn-container">
+    <button id="filtrare" class="btn btn-primary">
+        <i class="bi bi-filter-circle"></i> Filtreaza
+    </button>
+    <button id="resetare" class="btn btn-secondary">
+        <i class="bi bi-arrow-counterclockwise"></i> Reseteaza
+    </button>
+    <button id="sortCrescNume" class="btn btn-success">
+        <i class="bi bi-sort-alpha-down"></i> Crescator
+    </button>
+    <button id="sortDescrescNume" class="btn btn-danger">
+        <i class="bi bi-sort-alpha-down-alt"></i> Descrescator
+    </button>
+</p>
 
-    <p>
-        <button id="filtrare">Filtreaza</button> 
-        <button id="resetare">Reseteaza</button><br/>
-        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-    </p>
 
 
   
@@ -88,32 +133,34 @@
     <section id="produse">
         <h2>Produse</h2>
         <div class="grid-produse">
-           <% for(let prod of locals.produse) { %>
-                <article class="produs">
-                    <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
-                    <div class="info-prod">
-                    <% if (prod.pret_redus && prod.pret_redus < prod.pret) { %>
-                        <p>Pret redus: <del><%= prod.pret %></del> <strong><%= prod.pret_redus %> lei</strong></p>
-                    <% } else { %>
-                        <p>Pret: <%= prod.pret %> lei</p>
-                    <% } %>
+    <% for(let prod of locals.produse) { %>
+    <article class="produs">
+        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+        <% if (prod.esteCelMaiIeftin) { %>
+            <p class="badge-ieftin">⭐ Cel mai ieftin produs din categorie!</p>
+        <% } %>
 
-
-                    <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii %></span></p>
-                    <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj %></span></p>
-                    </div>
-                    <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie %></span></p>
-                    <figure>
-                    <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
-                    </figure>
-                    <label class="selecteaza-cos">
-                    Selectează:<br/>
-                    <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                    </label>
-                </article>
-                <% } %>
-
+        <div class="info-prod">
+            <% if (prod.pret_redus && prod.pret_redus < prod.pret) { %>
+                <p>Preț redus: <del class="old-price"><%= prod.pret %></del> <strong class="new-price"><%= prod.pret_redus %></strong> lei</p>
+            <% } else { %>
+                <p>Preț: <span class="current-price"><%= prod.pret %></span> lei</p>
+            <% } %>
+            
+            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii %></span></p>
+            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj %></span></p>
         </div>
+        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie %></span></p>
+        <figure>
+            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+        </figure>
+        <label class="selecteaza-cos">
+            Selectează:<br/>
+            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+        </label>
+    </article>
+<% } %>
+</div>
     </section>
      <hr class="efect-css-stilizare-hr">
 </main>

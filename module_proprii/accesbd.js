@@ -21,7 +21,7 @@ class AccesBD{
     }
 
     initLocal(){
-        this.client= new Client({database:"cti_2024",
+        this.client= new Client({database:"tehniciweb",
             user:"dana", 
             password:"dana", 
             host:"localhost", 

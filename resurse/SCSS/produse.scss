@@ -1,0 +1,345 @@
+
+
+
+
+// Definire variabile de culoare în SCSS
+$culoare-background:#d6fae2;
+$culoare-deschisa: #E5E67C;
+$verde: #008000;
+$border-color: #1d703f;
+$hover-color: #248d55;
+$background-secondary: #C7E9C0;
+
+.form-switch-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    background-color: #d8ebd5;
+    width: fit-content;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    
+    .form-check-input {
+        width: 3rem;
+        height: 1.5rem;
+        background-color: #c7e9c0;
+        border-radius: 2rem;
+        border: 1px solid #a1c69e;
+        cursor: pointer;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        
+        &:checked {
+            background-color: #a1c69e;
+            border-color: #88ad84;
+        }
+
+        &:checked + .switch-label .fa-sun {
+            display: none;
+        }
+
+        &:not(:checked) + .switch-label .fa-moon {
+            display: none;
+        }
+    }
+
+    .switch-label {
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #444;
+
+        .fa-sun {
+            color: #ffa500;
+        }
+
+        .fa-moon {
+            color: #555;
+        }
+    }
+}
+
+
+// Setare fundal pagina
+body {
+    background-color: $culoare-background !important;
+    color: #ffffff;
+}
+
+
+// Stilizarea butoanelor
+.btn {
+    @extend .btn;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &.btn-primary {
+        background-color: #238b45;
+        border-color: $border-color;
+        color: white;
+    }
+
+    &.btn-secondary {
+        background-color: #5c916a;
+        border-color: $border-color;
+        color: black;
+    }
+
+    &.btn-success {
+        background-color: $verde;
+        border-color: $border-color;
+        color: white;
+    }
+
+    &.btn-danger {
+        background-color: #005a32;
+        border-color: #005a32;
+        color: white;
+    }
+
+    &:hover {
+        background-color: darken($background-secondary, 5%) !important;
+        border-color: darken($border-color, 20%) !important;
+    }
+}
+
+.btn-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+
+.btn-primary:hover {
+    background-color: #267c55; // o culoare mai închisă manuală
+    border-color: #1a5d40;
+}
+main {
+  --padd-main: 1rem;
+  padding-left: var(--padd-main);
+  padding-right: var(--padd-main);
+}
+
+.grid-produse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+
+  .produs {
+    border-radius: 2rem;
+    box-shadow: 0px 0px 0.8rem 0.3rem grey;
+    overflow: hidden;
+    position: relative;
+
+    h3 {
+      background-color: var(--culoare-roz-inchis);
+      text-align: center;
+      margin-top: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      a {
+        color: black;
+
+        &:hover {
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
+
+    figure {
+      text-align: center;
+
+      img {
+        border: 1px solid grey;
+      }
+    }
+
+    .info-prod {
+      display: flex;
+      background-color: var(--cl-marcare);
+
+      p {
+        width: 30%;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    p.categorie {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+}
+
+.info-produse {
+  background-color: var(--cl-marcare);
+  padding: 0.2rem;
+  box-shadow: 0px 0px 0.5rem 0.15rem grey;
+}
+
+.selecteaza-cos {
+  display: inline-block;
+  background-color: var(--culoare-mov);
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: var(--cl-marcare);
+    border: 1px solid var(--culoare-mov);
+  }
+}
+
+.selectat {
+  color: green;
+  background-color: yellow;
+  font-weight: bold;
+}
+
+
+
+
+// Slider (range) customization
+input[type="range"] {
+    width: 100%;
+    accent-color: $culoare-background;
+    margin: 0.5rem 0;
+    height: 0.4rem;
+    background-color: lighten($border-color, 20%);
+    border-radius: 0.5rem;
+    
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 1.5rem; // 50% mai mare decat font-size-ul default (1rem)
+        height: 1.5rem;
+        background-color: $hover-color;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    &::-moz-range-thumb {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: $hover-color;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    &::-webkit-slider-thumb:hover,
+    &::-moz-range-thumb:hover {
+        background-color: darken($hover-color, 5%);
+    }
+}
+
+
+
+// Toggle buttons pentru radio si checkbox
+.btn-check:checked + .btn {
+    background-color: $culoare-background;
+    border-color: $border-color;
+    color: white;
+}
+
+.btn-check:not(:checked) + .btn {
+    background-color: transparent;
+    border-color: $border-color;
+    color: $culoare-background;
+}
+
+.btn-check:checked + .btn:hover {
+    background-color: darken($culoare-background, 5%);
+    border-color: darken($border-color, 5%);
+}
+
+.btn-check:not(:checked) + .btn:hover {
+    background-color: lighten($culoare-background, 40%);
+    color: darken($culoare-background, 20%);
+}
+
+
+
+// Floating labels pentru textarea
+.form-floating {
+    margin-bottom: 1rem;
+
+    .form-control {
+        border-radius: 0.5rem;
+        border-color: $border-color;
+        padding: 0.8rem 0.5rem;
+
+        &:focus {
+            border-color: $hover-color;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        &.is-invalid {
+            border-color: #D9534F;
+            box-shadow: 0 0 0 0.2rem rgba(217, 83, 79, 0.25);
+        }
+    }
+
+    label {
+        color: darken($culoare-background, 20%);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .btn-container .btn .btn-text {
+        display: none;
+    }
+
+    .btn-container .btn {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+
+
+// Switch pentru schimbarea temei
+.form-check-input {
+    width: 3rem;
+    height: 1.5rem;
+    background-color: $background-secondary;
+    border-radius: 2rem;
+    border: 1px solid $border-color;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:checked {
+        background-color: $culoare-background;
+        border-color: $border-color;
+    }
+
+    &:checked::before {
+        background-color: white;
+        left: 1.5rem;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        left: 0.1rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background-color: $hover-color;
+        transition: left 0.3s ease;
+    }
+}

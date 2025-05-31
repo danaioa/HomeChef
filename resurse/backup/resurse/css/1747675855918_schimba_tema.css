@@ -1,0 +1,32 @@
+.form-check-input {
+  background-color: #C7E9C0;
+  border-color: #248d55;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.form-check-input:hover {
+  border-color: rgb(25.6271186441, 100.3728813559, 60.5084745763);
+  background-color: #A7CBA8;
+}
+.form-check-input:checked {
+  background-color: #2F9D67;
+  border-color: #2F9D67;
+}
+.form-check-input:checked::before {
+  background-color: #FFFFFF;
+}
+
+body.dark .form-check-input {
+  background-color: #89a1ad;
+  border-color: #648396;
+}
+body.dark .form-check-input:hover {
+  background-color: rgb(129.6, 155.516, 171.4);
+}
+body.dark .form-check-input:checked {
+  background-color: #648396;
+  border-color: #648396;
+}
+body.dark .form-check-input:checked::before {
+  background-color: #f0f0f0;
+}

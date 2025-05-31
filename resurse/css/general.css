@@ -1,3 +1,6 @@
+
+
+
 /* ------------ Container Principal ------------ */
 .container-seturi {
     text-align: center;
@@ -77,6 +80,10 @@
 
 
 
+body {
+    background-color: #d8ebd5 !important;
+    
+}
 
 #theme-toggle {
   cursor: pointer;
@@ -155,6 +162,7 @@ body {
     --link-color: #C8E6C9;
     --background-secondary: #89a1ad;
 }
+
 body {
     background-color: var(--culoare-background);
     color: var(--text-color);

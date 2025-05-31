@@ -1,44 +1,62 @@
 <!DOCTYPE html>
-<html  lang="ro">
-    <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        
+<html lang="ro">
+<head>
+    <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+    <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
     
-        <%- include("../fragmente/head") %>     
-        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
-    </head>
+    <%- include("../fragmente/head") %>     
+    <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+</head>
 
-        <%- include("../fragmente/header") %>
+<body>
+    <%- include("../fragmente/header") %>
     <main>
-          <button id="toggleTema">
-        <i class="fas fa-sun"></i>
-    </button>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="toggleTema">
+            <label class="form-check-label" for="toggleTema">
+                <i id="temaIcon" class="fas fa-sun"></i>
+            </label>
+        </div>
+
         <section>
-
-
             <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Dietetic: <span class="pt_diabetici"><%- locals.prod.dietetic %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
-                    <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
-                </article>
-            
+            <article id="art-produs">
+                <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
+                <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
+                <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
+                <p>Categorie: <span class="categorie"><%- locals.prod.tip_produs %> </span></p> <p>Dietetic: <span class="pt_diabetici"><%- locals.prod.dietetic %> </span></p>
+                <p>Data adăugare: <span class="data-adaugare"><%- locals.prod.data_adaugare %> </span></p>
+                <figure class="imag-produs">
+                    <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                </figure>    
+            </article>
         </section>
 
+        <% if (locals.produseSimilare && locals.produseSimilare.length > 0) { %>
+            <section id="produse-similare">
+                <h2>Produse similare</h2>
+                <div class="grid-produse-similare">
+                    <% for(let similarProd of locals.produseSimilare) { %>
+                        <article class="produs-similar">
+                            <a href="/produs/<%- similarProd.id %>">
+                                <h4 class="nume-similar"><%- similarProd.nume %></h4>
+                                <figure class="imag-similar">
+                                    <img src="/resurse/imagini/produse/<%- similarProd.imagine %>" alt="[imagine <%- similarProd.nume %>]" />
+                                </figure>
+                                <p class="pret-similar">Preț: <%- similarProd.pret %> lei</p>
+                                <p class="calorii-similar">Calorii: <%- similarProd.calorii %></p>
+                            </a>
+                        </article>
+                    <% } %>
+                </div>
+            </section>
+        <% } %>
 
-        <h2>Pagină produs</h2>
     </main>
 
     <%- include("../fragmente/footer") %>
-    </body>
+</body>
 </html>

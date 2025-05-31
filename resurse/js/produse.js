@@ -1,62 +1,68 @@
 window.onload = function () {
     const btn = document.getElementById("filtrare");
-    btn.onclick = function () {
-
-        if (!validareInputuri()) {
-        // Dacă validarea nu trece, oprește filtrarea
+ btn.onclick = function () {
+    if (!validareInputuri()) {
         return;
     }
+
     let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
 
     let vectRadio = document.getElementsByName("gr_rad");
-
-    let inpAlergeni = document.getElementById("inp-alergeni").value.trim().toLowerCase();
-    let alergeniEvitat = inpAlergeni ? inpAlergeni.split(",").map(a => a.trim()) : [];
-
     let inpCalorii = null;
     let minCalorii = null;
     let maxCalorii = null;
-
     for (let rad of vectRadio) {
         if (rad.checked) {
             inpCalorii = rad.value;
-            if (rad.value != "toate") {
+            if (inpCalorii != "toate") {
                 [minCalorii, maxCalorii] = inpCalorii.split(":");
-                minCalorii = parseFloat(minCalorii);
-                maxCalorii = parseFloat(maxCalorii);
+                minCalorii = parseInt(minCalorii);
+                maxCalorii = parseInt(maxCalorii);
             }
             break;
         }
     }
 
-    let inpPret = parseFloat(document.getElementById("inp-pret").value.trim());
-
+    let inpPret = document.getElementById("inp-pret").value;
     let inpCategorie = document.getElementById("inp-categorie").value.trim().toLowerCase();
 
-    let produse = document.getElementsByClassName("produs");
+    // Condiții suplimentare
+    let inpAlergeni = document.getElementById("inp-alergeni").value.trim().toLowerCase();
+    let alergeniEvitat = inpAlergeni ? inpAlergeni.split(",").map(a => a.trim()) : [];
 
+    let selectMultiplu = Array.from(document.getElementById("inp-select-multiplu").selectedOptions).map(opt => opt.value);
+    let observatii = document.getElementById("inp-observatii").value.trim().toLowerCase();
+
+    let produse = document.getElementsByClassName("produs");
     for (let prod of produse) {
         prod.style.display = "none";
 
-        let ingrediente = prod.getElementsByClassName("val-ingrediente")[0].innerHTML.trim().toLowerCase();
-
         let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
-        let calorii = parseFloat(prod.getElementsByClassName("val-calorii")[0].innerHTML.trim());
-        let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML.trim());
-        let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
-        let contineAlergen = alergeniEvitat.some(alergen => ingrediente.includes(alergen));
-
         let cond1 = nume.startsWith(inpNume);
-        let cond2 = (!inpCalorii || inpCalorii == "toate" || (minCalorii <= calorii && calorii < maxCalorii));
-        let cond3 = (pret >= inpPret);
+
+        let calorii = parseInt(prod.getElementsByClassName("val-calorii")[0].innerHTML.trim());
+        let cond2 = (inpCalorii == "toate" || (minCalorii <= calorii && calorii < maxCalorii));
+
+        let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML.trim());
+        let cond3 = (inpPret <= pret);
+
+        let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
         let cond4 = (inpCategorie == "toate" || inpCategorie == categorie);
 
-        if (cond1 && cond2 && cond3 && cond4 && !contineAlergen) {
+        
+        let ingrediente = prod.getElementsByClassName("val-ingrediente")[0]?.innerHTML.trim().toLowerCase() || "";
+        let contineAlergen = alergeniEvitat.some(alergen => ingrediente.includes(alergen));
+
+        let eticheteProdus = prod.getAttribute("data-etichete")?.toLowerCase().split(",") || [];
+        let descriereProdus = prod.getElementsByClassName("val-descriere")[0]?.innerHTML.trim().toLowerCase() || "";
+
+        let cond5 = selectMultiplu.length == 0 || selectMultiplu.every(et => eticheteProdus.includes(et));
+        let cond6 = !observatii || descriereProdus.includes(observatii);
+
+        if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && !contineAlergen) {
             prod.style.display = "block";
         }
     }
-
- 
 };
 
 
@@ -81,10 +87,13 @@ window.onload = function () {
 
     
         document.getElementById("inp-nume").value = "";
-        document.getElementById("i_rad4").checked = true;  // presupun că i_rad4 este radio pentru calorii "toate"
+        document.getElementById("i_rad4").checked = true;  
         document.getElementById("inp-pret").value = 0;
         document.getElementById("infoRange").innerHTML = "(0)";
         document.getElementById("inp-categorie").value = "toate";
+        
+        document.getElementById("inp-select-multiplu").selectedIndex = -1;
+        document.getElementById("inp-observatii").value = "";
 
         
         let produse = document.getElementsByClassName("produs");
@@ -112,13 +121,7 @@ window.onload = function () {
         let vProduse = Array.from(produse);
 
         vProduse.sort(function (a, b) {
-            let pretA = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML.trim());
-            let pretB = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML.trim());
-
-            if (pretA != pretB) {
-                return semn * (pretA - pretB);
-            }
-
+            
             let numeA = a.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
             let numeB = b.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
             return semn * numeA.localeCompare(numeB);

@@ -16,9 +16,13 @@
 <%- include('../fragmente/header.ejs')%>
 
 <main class="pagina-despre">
-  <button id="toggleTema">
-        <i class="fas fa-sun"></i>
-    </button>
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="toggleTema">
+  <label class="form-check-label" for="toggleTema">
+    <i id="temaIcon" class="fas fa-sun"></i>
+  </label>
+</div>
+
      <hr class="efect-css-stilizare-hr">
     <div class="galerie-imagini">
         <% for(let i=0; i < nrImagini && i < imagini.length; i+=2) { %>

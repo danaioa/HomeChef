@@ -4,18 +4,20 @@ const fs = require("fs");   //sterge sau modifica fisiere
 const sharp= require("sharp");
 const pg= require("pg");
 const sass= require("sass");
-const AccesBD = require("./module_proprii/accesbd");
 const { table } = require("console");
 const moment = require('moment');
-//const AccesBD= require("./module_proprii/accesbd.js");
+const AccesBD= require("./module_proprii/accesbd.js");
+const formidable=require("formidable");
+const {Utilizator}=require("./module_proprii/utilizator.js")
+const session=require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
 
 
-// const AccesBD=require("./module_proprii/accessbd.js")
-// AccessBD.getInstanta().select({tabel:"prajituri", campuri:["*"]},function(err,rez){
-//     console.log("-----------------------Acces BD-------------------------------")
-//     console.log(err)
-//     console.log(rez)
-// })
+AccesBD.getInstanta().select({tabel:"preparate", campuri:["*"]},function(err,rez){
+    console.log("-----------------------Acces BD-------------------------------")
+    console.log(err)
+    console.log(rez)
+})
 const Client=pg.Client;
 
 client=new Client({
@@ -93,7 +95,7 @@ function compileazaScss(caleScss, caleCss){
         fs.mkdirSync(caleBackup,{recursive:true})  ///{recursive:true} =creaza toate folderele intermediare
     }
     
-    // la acest punct avem cai absolute in caleScss si  caleCss
+   
 
     let numeFisCss=path.basename(caleCss);
     if (fs.existsSync(caleCss)){
@@ -107,8 +109,8 @@ function compileazaScss(caleScss, caleCss){
     //console.log("Compilare SCSS",rez);
 }
 //compileazaScss("a.scss");
+/// la bonului 1 trebuie sa faci cu un for alea 
 
-// la pornirea serverului, compileaza toate fisierele scss din folderul scss
 vFisiere=fs.readdirSync(obGlobal.folderScss);  /// vfisiere este un viector cu toate fisierele scss
 for( let numeFis of vFisiere ){
     if (path.extname(numeFis)==".scss"){
@@ -181,7 +183,7 @@ function initImagini(){
 
 initImagini();
 
-// pentru a compila ejs res.render
+
 
 
 function afisareEroare(res, identificator, titlu, text, imagine){
@@ -217,7 +219,7 @@ function afisareEroare(res, identificator, titlu, text, imagine){
 app.use("/*", function(req, res, next){
     res.locals.optiuniMeniu=obGlobal.OptiuneMeniu;
     
-    next();// pun next ca sa se duca la urmatorul pagina
+    next();
 })
 
 app.use("/resurse", express.static(path.join(__dirname,"resurse")))
@@ -233,9 +235,9 @@ app.get(["/","/index","/home"], function(req, res){
 })
 
 
-// -----------------------------SETURI DE PRODUSE-----------------------------
+// -----------------------------SETURI DE PRODUSE  Bonusul 17-----------------------------
 app.get("/produse/seturi", async function (req, res) {
-    console.log("🌐 Ruta /produse/seturi a fost apelată");
+   
     try {
         const seturiQuery = `
             SELECT s.id, s.nume_set, s.descriere_set
@@ -244,7 +246,7 @@ app.get("/produse/seturi", async function (req, res) {
             JOIN preparate p ON a.id_produs = p.id
             GROUP BY s.id, s.nume_set, s.descriere_set
         `;
-        console.log("📝 Interogare seturi pregătită...");
+        
 
         const produseQuery = `
             SELECT s.id AS id_set, p.id, p.nume, p.pret, p.categorie
@@ -252,17 +254,15 @@ app.get("/produse/seturi", async function (req, res) {
             JOIN asociere_set a ON s.id = a.id_set
             JOIN preparate p ON a.id_produs = p.id
         `;
-        console.log("📝 Interogare produse pregătită...");
-
-        console.log("🚀 Pornesc execuția interogărilor...");
+       
 
         const [seturiResult, produseResult] = await Promise.all([
             client.query(seturiQuery),
             client.query(produseQuery)
         ]);
 
-        console.log("✅ Rezultate seturi:", seturiResult.rows);
-        console.log("✅ Rezultate produse:", produseResult.rows);
+        console.log(" Rezultate seturi:", seturiResult.rows);
+        console.log(" Rezultate produse:", produseResult.rows);
 
         const seturi = seturiResult.rows.map(set => {
             set.produse = produseResult.rows.filter(p => p.id_set === set.id);
@@ -275,12 +275,12 @@ app.get("/produse/seturi", async function (req, res) {
             return set;
         });
 
-        console.log("🎯 Seturi finale pentru render:", seturi);
+        console.log(" Seturi finale pentru render:", seturi);
 
         res.render("pagini/seturi", { seturi });
 
     } catch (err) {
-        console.error("💥 Eroare interogare seturi:", err);
+        console.error(" Eroare interogare seturi:", err);
         afisareEroare(res, 2, "Eroare interogare seturi.");
     }
 });
@@ -294,6 +294,23 @@ app.get("/produs/:id", async (req, res) => {
 
         const produs = resultProd.rows[0];
 
+     
+        const queryProduseSimilare = `
+            SELECT id, nume, imagine, pret, calorii, tip_produs
+            FROM preparate
+            WHERE tip_produs = $1
+            AND id != $2
+            AND calorii BETWEEN $3 - 100 AND $3 + 100
+            ORDER BY RANDOM()
+            LIMIT 4; -- Limităm la un număr rezonabil de produse similare
+        `;
+        const resultProduseSimilare = await client.query(queryProduseSimilare, [
+            produs.tip_produs,
+            produs.id,
+            produs.calorii
+        ]);
+
+      
         const resultSeturi = await client.query(`
             SELECT s.id, s.nume_set, s.descriere_set,
                    ARRAY_AGG(p.id) AS produse_ids,
@@ -310,11 +327,12 @@ app.get("/produs/:id", async (req, res) => {
 
         res.render("pagini/produs", { 
             prod: produs, 
-            seturi: resultSeturi.rows
+            seturi: resultSeturi.rows,
+            produseSimilare: resultProduseSimilare.rows 
         });
     } catch (e) {
         console.error("Eroare la produs:", e);
-        afisareEroare(res, 2);
+        afisareEroare(res, 2); 
     }
 });
 
@@ -323,13 +341,13 @@ app.get("/produs/:id", async (req, res) => {
 
 
 
-// ----------------------------OFERTE-----------------------------------
+// ----------------------------OFERTE   Bonusul 12 -----------------------------------
 
-// Interval de generare oferte (in milisecunde) - 2 minute pentru testare
-const intervalGenerare = 2 * 60 * 1000;
+const intervalGenerare = 2 * 60 * 1000; 
+const intervalCuratare = 5 * 60 * 1000; 
 const caleJson = path.join(__dirname, 'resurse/json/oferte.json');
 
-// Generare oferta noua
+
 function genereazaOferta() {
     client.query("SELECT * FROM unnest(enum_range(NULL::tipuri_preparate))", (err, rezultat) => {
         if (err) {
@@ -341,14 +359,14 @@ function genereazaOferta() {
         const reduceri = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
         const ofertaNoua = {};
 
-        // Citire oferte existente
+        
         let dateOferte = { oferte: [] };
         if (fs.existsSync(caleJson)) {
             const continutJson = fs.readFileSync(caleJson);
             dateOferte = JSON.parse(continutJson);
         }
 
-        // Generare tip produs si reducere unica
+       
         do {
             ofertaNoua.tipuri_preparate = tipuriPreparate[Math.floor(Math.random() * tipuriPreparate.length)];
         } while (dateOferte.oferte[0] && dateOferte.oferte[0].tipuri_preparate === ofertaNoua.tipuri_preparate);
@@ -357,19 +375,39 @@ function genereazaOferta() {
         ofertaNoua["data-incepere"] = moment().format();
         ofertaNoua["data-finalizare"] = moment().add(intervalGenerare, 'milliseconds').format();
 
-        // Adaugare oferta noua la inceputul vectorului
+       
         dateOferte.oferte.unshift(ofertaNoua);
 
-        // Salvare oferta in fisier
         fs.writeFileSync(caleJson, JSON.stringify(dateOferte, null, 4));
         console.log("Oferta noua generata:", ofertaNoua);
     });
 }
 
-// Pornire sistem de oferte
-setInterval(genereazaOferta, intervalGenerare);
-console.log("Sistemul de oferte a fost pornit.");
+function curataOferteVechi() {
+    let dateOferte = { oferte: [] };
+    if (fs.existsSync(caleJson)) {
+        const continutJson = fs.readFileSync(caleJson);
+        dateOferte = JSON.parse(continutJson);
+    }
 
+    const acum = moment();
+    
+    dateOferte.oferte = dateOferte.oferte.filter(oferta => {
+        const dataFinalizare = moment(oferta["data-finalizare"]);
+        
+        return acum.diff(dataFinalizare, 'milliseconds') < intervalCuratare;
+    });
+
+    
+    fs.writeFileSync(caleJson, JSON.stringify(dateOferte, null, 4));
+    console.log("Ofertele vechi au fost curățate.");
+}
+
+
+setInterval(genereazaOferta, intervalGenerare);
+setInterval(curataOferteVechi, intervalCuratare); 
+console.log("Sistemul de oferte a fost pornit.");
+console.log("Sistemul de curățare a ofertelor vechi a fost pornit.");
 
 
 
@@ -452,12 +490,12 @@ app.get("/despre", function(req, res){
 
 app.get("/produse", function(req, res){
     console.log(req.query);
-    var conditieQuery=""; // TO DO where din parametri
+    var conditieQuery = "";
     if (req.query.tip){
-        conditieQuery=` where tip_produs='${req.query.tip}'`
+        conditieQuery = ` where tip_produs='${req.query.tip}'`
     }
 
-    // 1. Citim ofertele din fisier JSON
+
     const ofertePath = path.join(__dirname, "resurse/json/oferte.json");
     fs.readFile(ofertePath, "utf8", (err, data) => {
         let ofertaActiva = null;
@@ -477,7 +515,7 @@ app.get("/produse", function(req, res){
             }
         }
 
-        // 2. Interogăm opțiunile categorii
+       
         const queryOptiuni = "select * from unnest(enum_range(null::categ_produs))";
         client.query(queryOptiuni, function(err, rezOptiuni){
             if (err) {
@@ -486,7 +524,7 @@ app.get("/produse", function(req, res){
                 return;
             }
 
-            // 3. Interogăm produsele
+
             const queryProduse = "select * from preparate" + conditieQuery;
             client.query(queryProduse, function(err, rez){
                 if (err){
@@ -495,16 +533,15 @@ app.get("/produse", function(req, res){
                     return;
                 }
 
-                // 4. Dacă există o ofertă activă, aplicăm reducerea pe produsele din categoria respectivă
                 let produseAfisare = rez.rows;
+
+              
                 if (ofertaActiva) {
                     produseAfisare = produseAfisare.map(p => {
-                        // Verifică dacă tipul produsului este același cu cel al ofertei active
                         if (p.tip_produs.toLowerCase() === ofertaActiva.tipuri_preparate.toLowerCase()) {
                             let pretInitial = Number(p.pret);
                             if (!isNaN(pretInitial)) {
-                                // Calculează și setează prețul redus
-                                p.pret_reducere = +(pretInitial * (100 - ofertaActiva.reducere) / 100).toFixed(2);
+                                p.pret_redus = +(pretInitial * (100 - ofertaActiva.reducere) / 100).toFixed(2);
                             }
                         }
                         return p;
@@ -512,7 +549,31 @@ app.get("/produse", function(req, res){
                 }
 
 
+                const preturiMinimePeCategorii = {};
+
+                // Calculeaza minimul
+                produseAfisare.forEach(prod => {
+                    const categorie = prod.tip_produs.toLowerCase();
+                    const pretActual = Number(prod.pret_redus ?? prod.pret);
+
+                    if (
+                        preturiMinimePeCategorii[categorie] === undefined ||
+                        pretActual < preturiMinimePeCategorii[categorie]
+                    ) {
+                        preturiMinimePeCategorii[categorie] = pretActual;
+                    }
+                });
+
                 
+                produseAfisare = produseAfisare.map(prod => {
+                    const categorie = prod.tip_produs.toLowerCase();
+                    const pretActual = Number(prod.pret_redus ?? prod.pret);
+
+                    prod.esteCelMaiIeftin = (pretActual === preturiMinimePeCategorii[categorie]);
+                    return prod;
+                });
+
+            
 
                 res.render("pagini/produse", {
                     produse: produseAfisare,
@@ -580,6 +641,93 @@ app.get(/^\/resurse\/[a-zA-Z0-9_\/]*$/, function(req, res, next){
 //     });
 // })
 
+// ------------------------- utilizatori ---------------------------
+
+
+app.post("/inregistrare",function(req, res){
+    var username;
+    var poza;
+    var formular= new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier ){//4
+        console.log("Inregistrare:",campuriText);
+
+
+        console.log(campuriFisier);
+        console.log(poza, username);
+        var eroare="";
+
+
+        // TO DO var utilizNou = creare utilizator
+        var utilizNou =new Utilizator();
+        try{
+            utilizNou.setareNume=campuriText.nume[0];
+            utilizNou.setareUsername=campuriText.username[0];
+            utilizNou.email=campuriText.email[0]
+            utilizNou.prenume=campuriText.prenume[0]
+           
+            utilizNou.parola=campuriText.parola[0];
+            utilizNou.culoare_chat=campuriText.culoare_chat[0];
+            utilizNou.poza= poza;
+            Utilizator.getUtilizDupaUsername(campuriText.username[0], {}, function(u, parametru ,eroareUser ){
+                if (eroareUser==-1){//nu exista username-ul in BD
+                    //TO DO salveaza utilizator
+                    utilizNou.salvareUtilizator()
+                }
+                else{
+                    eroare+="Mai exista username-ul";
+                }
+
+
+                if(!eroare){
+                    res.render("pagini/inregistrare", {raspuns:"Inregistrare cu succes!"})
+                   
+                }
+                else
+                    res.render("pagini/inregistrare", {err: "Eroare: "+eroare});
+            })
+           
+
+
+        }
+        catch(e){
+            console.log(e);
+            eroare+= "Eroare site; reveniti mai tarziu";
+            console.log(eroare);
+            res.render("pagini/inregistrare", {err: "Eroare: "+eroare})
+        }
+   
+
+    });
+    formular.on("field", function(nume,val){  // 1
+   
+        console.log(`--- ${nume}=${val}`);
+       
+        if(nume=="username")
+            username=val;
+    })
+    formular.on("fileBegin", function(nume,fisier){ //2
+        console.log("fileBegin");
+       
+        console.log(nume,fisier);
+        //TO DO adaugam folderul poze_uploadate ca static si sa fie creat de aplicatie
+        //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului (variabila folderUser)
+        var folderUser=path.join(__dirname, "poze_uploadate", username);
+        if (!fs.existsSync(folderUser))
+            fs.mkdirSync(folderUser)
+       
+        fisier.filepath=path.join(folderUser, fisier.originalFilename)
+        poza=fisier.originalFilename;
+        //fisier.filepath=folderUser+"/"+fisier.originalFilename
+        console.log("fileBegin:",poza)
+        console.log("fileBegin, fisier:",fisier)
+
+
+    })    
+    formular.on("file", function(nume,fisier){//3
+        console.log("file");
+        console.log(nume,fisier);
+    });
+});
 
 app.get("/*.ejs", function(req, res, next){
     afisareEroare(res,400);
@@ -616,5 +764,3 @@ app.get("/*", function(req, res, next){
 
 app.listen(8080);
 console.log("Serverul a pornit")
-
-

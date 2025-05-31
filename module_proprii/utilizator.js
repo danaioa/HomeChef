@@ -10,7 +10,7 @@ class Utilizator{
     static tipConexiune="local";
     static tabel="utilizatori"
     static parolaCriptare="tehniciweb";
-    static emailServer="test.tweb.node@gmail.com";
+    static emailServer="lepadatzizi@gmail.com";
     static lungimeCod=64;
     static numeDomeniu="localhost:8080";
     #eroare;
@@ -98,7 +98,7 @@ class Utilizator{
             secure: false,
             auth:{//date login 
                 user:Utilizator.emailServer,
-                pass:"rwgmgkldxnarxrgu"
+                pass:"ckhjahnguoxcxrou"
             },
             tls:{
                 rejectUnauthorized:false
